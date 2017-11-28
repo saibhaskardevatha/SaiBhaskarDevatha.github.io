@@ -12,6 +12,7 @@
 		<meta property="og:type" content="Website">
 		<meta property="og:url" content="http://www.saibhaskardevatha.co.in/projects/dsp/">
 		<meta property="og:title" content="Music Genré Classification">
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML'></script>
 	</head>
 	<body>
 		<div class="container">
@@ -169,11 +170,14 @@
 					</div>
 					<div class="text">
 						<!-- Start edit here  --> <br>
-						<span id="inch">Chroma Centroid</span>: It is the weighted mean of chroma bins where the weights are the energy associated with chroma bins. <br><br>
-						<span id="inch">Chroma spread</span>: It gives an idea of the shape of chroma in each frame. Its calculated as follows. <br><br>
+						<span id="inch">Chroma Centroid</span>: It is the weighted mean of chroma bins where the weights are the energy associated with chroma bins.The centroid is the measure of the spectral shape and higher centroid values correspond to
+brighter textures with more high frequencies. 
+						<div style="margin: auto; width: 35%;align-self: center;"><p style="margin: auto;">\begin{align}  Centroid = \frac{\sum_{k=0}^{12} k|C(k)|}{ \sum_{k=0}^{12} |C(k)| } \end{align}</p> </div>
+						<span id="inch">Chroma Spread</span>: It gives an idea of the shape of chroma in each frame. Its calculated as follows. <br> <div style="margin: auto; width: 35%;align-self: center;"><p>$$ Spread = \sqrt{\frac{\sum_{k=0}^{12} (k.Centroid)^2(C(k))}{\sum_{k=0}^{12} C(k)}}$$</p></div>
 						<span id="inch">Max Chroma</span>: The Chroma bin associated with maximum energy. <br><br>
 						<span id="inch">Min Chroma</span>: It is the least energy chroma bin.<br><br>
-						<span id="inch">Chroma Flux</span>: It shows how chroma distribution varies across frames. It can be calculated as follows.
+						<span id="inch">Chroma Flux</span>: It shows how chroma distribution varies across frames. It can be calculated as follows. The spectral flux is defined as the squared difference between the normalized magnitudes of
+successive spectral distributions that correspond to successive signal frames.<div style="margin: auto; width: 35%;align-self: center;"><p>$$ Flux = \sum_{k=0}^{12} (|C_r(k)|-|C_{r-1}(k)|)^2$$</p></div>
 						<!-- Stop edit here -->
 					</div>
 						
