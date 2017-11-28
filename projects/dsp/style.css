@@ -12,6 +12,17 @@ a{
 a:visited{
 	color: red;
 }
+table,th,td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 10px;
+}
+#inch{
+	padding-bottom: 1.25px;
+	border-bottom: 1px solid;
+}
 #back{
 	text-align: center;
 	color: black;

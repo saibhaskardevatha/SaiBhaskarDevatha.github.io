@@ -68,7 +68,7 @@
 					<div class="image">
 
 						<!-- Start edit here  -->
-						<a href="Pictures/example.jpg" target="_blank"><img src="Pictures/example.jpg" alt="This text displays when the image is umavailable"/></a>
+						<a href="Pictures/example.jpg" target="_blank"><img src="Pictures/example.jpg" alt="This text displays when the image is unavailable"/></a>
 						<!-- Stop edit here -->
 
 					</div>
@@ -106,11 +106,11 @@
 						1. Title and Authors.<sup><a href="#top">[Top]</a></sup> <br>
 						2. Abstract.<sup><a href="#abs">[0]</a></sup> <br>
 						3. Introduction to Problem.<sup><a href="#intro">[1]</a></sup> <br>
-						4. Theory.<sup><a href="#theory">[2]</a></sup> <br>
-						5. Experimental Results and Discussions.<sup><a href="#results">[3]</a></sup> <br>
+						4. Proposed Approach.<sup><a href="#theory">[2]</a></sup> <br>
+						5. Experimental Results, Project Code and Discussions.<sup><a href="#results">[3]</a></sup> <br>
 						6. Conclusions and Summary.<sup><a href="#summary">[4]</a></sup> <br>
 						7. References.<sup><a href="#1">[5]</a></sup>  <br>
-						The above order is followed to ensure every finding of us is well documented.
+						The above order is followed to ensure every finding of us is properly documented.
 						<!-- Stop edit here -->
 
 					</div>
@@ -137,6 +137,57 @@
 					</div>
 				</div>
 
+				<div class="subsection">
+					<div class="heading">2.2 Feature Extraction and Selection</div>
+					<div class="text">
+						<!-- Start edit here  -->
+						The audio file, which was stored into the Numpy array, is then divided into equally sized frames for further analysis. The following procedure was then used to extract chroma-based features,<br>
+						->&nbsp;&nbsp;Short Time Fourier Transform (STFT) was initially calculated for each frame. <br>
+						->&nbsp;&nbsp;This was then passed through a chroma filter to obtain chromagram. <br>
+						This chromagram was used to calculate features like centroid chroma, chroma spread, Min-Max chroma and chroma flux. In an additional approach, 10 frames were used together to calculate mean energy and standard deviation of each chroma. <br><br>
+
+						<div class="image">
+
+						<!-- Start edit here  -->
+						<a href="Pictures/chromograms.jpg" target="_blank"><img src="Pictures/chromograms.jpg" alt="This text displays when the image is unavailable"/></a>
+						<!-- Stop edit here -->
+						<br>
+					</div>
+
+						<span id="inch">Chromagram Basics</span>: Most music is based on the tonality system. Tonality arranges sounds according to pitch relationships into interdependent spatial and temporal structures. Characterizing chords, keys, melody, motifs and even form, largely depends on these structures. The pitch helix is a representation of pitch relationships that places tones in the surface of a cylinder. It models the special relationship that exists between octave intervals. Chroma represents the inherent circularity of pitch organization. Chroma describes the angle of pitch rotation as it traverses the helix. Two octave-related pitches will share the same angle in the chroma circle: a relation that is not captured by a linear pitch scale (or even Mel). For the analysis of tonal music we quantize this angle into 12 positions or pitch classes. 
+
+						<!-- Stop edit here -->
+					</div>
+					<div class="image">
+
+						<!-- Start edit here  -->
+						<a href="Pictures/helix.png" target="_blank"><img src="Pictures/helix.png" style="height: 100%;width: auto;" alt="This text displays when the image is unavailable"/></a>  <figcaption style="text-align: center;">Chroma can be taught as a pitch of frequencies</figcaption>
+
+						<a href="Pictures/filter.png" target="_blank"><img src="Pictures/filter.png" alt="This text displays when the image is unavailable"/></a><figcaption style="text-align: center;">Chroma filter bank</figcaption>
+						<!-- Stop edit here -->
+
+					</div>
+					<div class="text">
+						<!-- Start edit here  --> <br>
+						<span id="inch">Chroma Centroid</span>: It is the weighted mean of chroma bins where the weights are the energy associated with chroma bins. <br><br>
+						<span id="inch">Chroma spread</span>: It gives an idea of the shape of chroma in each frame. Its calculated as follows. <br><br>
+						<span id="inch">Max Chroma</span>: The Chroma bin associated with maximum energy. <br><br>
+						<span id="inch">Min Chroma</span>: It is the least energy chroma bin.<br><br>
+						<span id="inch">Chroma Flux</span>: It shows how chroma distribution varies across frames. It can be calculated as follows.
+						<!-- Stop edit here -->
+					</div>
+						
+				</div>
+
+				<div class="subsection">
+					<div class="heading">2.3 Classification</div>
+					<div class="text">
+						<!-- Start edit here  -->
+						Two different classifiers, namely SVM and Multi-Layer Perceptron, were used upon the feature vectors that were extracted in the previous step. In SVM classifier, gamma was varied to obtain different levels of fitness. For Multi-Layer Perceptron, the following 3 configurations of hidden layers were used 8-8, 12-8-6, 3-3.
+						<!-- Stop edit here -->
+					</div>
+				</div>
+
 			</div>
 
 			<div class="section" id="results">
@@ -156,20 +207,123 @@
 					<div class="text">
 
 						<!-- Start edit here  -->
-						To be updated soon.
+						Inspired from the features like spectral spread and centroid, generally used to analyse speech using spectral features, we tried extracting the parallel features in  chromogram domain. <br><br>
+						In the initial attempt we constructed the feature vectors, on which the data was trained, has  following features: <br>
+						&nbsp;&nbsp;1. Chroma Centroid <br>
+						&nbsp;&nbsp;2. Chroma Spread <br>
+						&nbsp;&nbsp;3. Min chroma <br>
+						&nbsp;&nbsp;4. Max chroma <br>
+						&nbsp;&nbsp;5. Chroma flux <br>
+						These 5 features were augmented with the 12 chormagram coefficients obtained directly from chromogram making a 17 dimensional feature vector. <br><br>
+						Not satisfied with the classification accuracy we increased our aperture of analysis by considering 10 frames with a hop length of 5 frames. We found the mean of each chroma coefficient and its variance over 10 frames thereby in a way observing chroma distribution this gave us 24 dimension feature vector which gave us improved results. 
+
 						<!-- Stop edit here -->
 
 					</div>
 				</div>
-
 				<div class="subsection">
-					<div class="heading">3.3 Results</div>
+					<div class="heading">3.3 Project Code</div>
 					<div class="text">
 
 						<!-- Start edit here  -->
-						To be updated soon.
+						All experiment codes for our project can be found from this <a href="https://github.com/SaiBhaskarDevatha/Music-Genre-Classification">GitHub Repository</a>.	
 						<!-- Stop edit here -->
 
+					</div>
+				</div>
+				<div class="subsection">
+					<div class="heading">3.4 Results</div>
+					<div class="text">
+						<!-- Start edit here  -->
+						<table style="width:100%;">
+						<tr>
+						    <th>Classes</th>
+						    <th>Features</th> 
+						    <th>Frame Size(No.of Frames)</th>
+						    <th>Classifier</th>
+						    <th>Accuracy</th>
+						</tr>
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>Cen, Var, Max, Min, Flux</td>
+						    <td>0.046s(2048)</td>
+						    <td>SVM</td>
+						    <td>38.8%</td>
+						</tr>
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>12 Chroma Coefficients</td>
+						    <td>0.046s(2048)</td>
+						    <td>SVM</td>
+						    <td>42.5%</td>
+						</tr>
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>Cen, Var, Max, Min, Flux, 12 Chroma Coefficients</td>
+						    <td>0.046s(2048)</td>
+						    <td>SVM</td>
+						    <td>43.5%</td>
+						</tr>
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>SVM</td>
+						    <td>46.5%</td>
+						</tr>
+						
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>SVM</td>
+						    <td>54.5%</td>
+						</tr>
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>SVM Overfit(Gamma = 5)</td>
+						    <td>55.4%</td>
+						</tr>	
+						<tr>
+						    <td>Rock, Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>MLP(12,8,6)</td>
+						    <td>57%</td>
+						</tr>
+						<tr>
+						    <td>Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>MLP(8,8)</td>
+						    <td>68.5%</td>
+						</tr>
+						<tr>
+						    <td>Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>SVM</td>
+						    <td>68.6%</td>
+						</tr>
+						<tr>
+						    <td>Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>MLP(6,3,3)</td>
+						    <td>68.8%</td>
+						</tr>
+
+						<tr>
+						    <td>Classical, Jazz, Metal</td>
+						    <td>Mean and Variance of 12 Chroma Coefficients</td>
+						    <td>0.232s(4096)</td>
+						    <td>MLP(12,8,6)</td>
+						    <td>70.1%</td>
+						</tr>
+						</table>		
+						<!-- Stop edit here -->
 					</div>
 				</div>
 			</div>
@@ -181,7 +335,7 @@
 					<div class="text">
 
 						<!-- Start edit here  -->
-						To be updated soon.
+						This project was aimed to tackle the problem of automatic music genre classification based on various features. We pre-processed the data first followed by feature extraction and selection, lastly followed by classification. Here, we focussed our spectrum of features onto just chroma-based features as these act as a good metric for human perception of music. Through feature analysis and classification, a maximum accuracy of 70% was obtained.
 						<!-- Stop edit here -->
 
 					</div>
@@ -202,9 +356,9 @@
 
 						<!-- Start edit here  -->
 						Apart from the most generic use of classifying huge chunks of data, this classifier can also be used for following applications, <br>
-						1. Developing an automatic genre based disco lights system. <br>
-						2. Automatic Equaliser. <br>
-						3. Emotion-mapped music player.
+						&nbsp;&nbsp;1. Developing an automatic genre based disco lights system. <br>
+						&nbsp;&nbsp;2. Automatic Equaliser. <br>
+						&nbsp;&nbsp;3. Emotion-mapped music player.
 						<!-- Stop edit here -->
 
 					</div>
@@ -225,7 +379,7 @@
 					<p id="7"><a href="http://music.psych.cornell.edu/articles/reviews/A_theory_of_tonal_hierarchies_in_music.pdf" target="_blank">[7]</a> Carol L. Krumhansl and Lola L. Cuddy, A Theory of Tonal Hierarchies in Music.</p><br>
 					<p id="8"><a href="http://www.nyu.edu/classes/bello/MIR_files/tonality.pdf" target="_blank">[8]</a> Juan Pablo Bello, Chroma and tonality, Music Information Retrieval.</p><br>
 					<p id="9"><a href="http://www.flipcode.com/misc/BeatDetectionAlgorithms.pdf" target="_blank">[9]</a> Fredric Patin, Beat Detection Algorithms.</p><br>
-					<p id="10"><a href="http://www.justinsalamon.com/uploads/4/3/9/4/4394963/justin_salamon_-_masterthesis.pdf" target="_blank">[9]</a>Justin Jonathan Salamon, Chroma-based Predominant Melody and Bass Line Extraction from Music Audio Signals</p><br>
+					<p id="10"><a href="http://www.justinsalamon.com/uploads/4/3/9/4/4394963/justin_salamon_-_masterthesis.pdf" target="_blank">[10]</a> Justin Jonathan Salamon, Chroma-based Predominant Melody and Bass Line Extraction from Music Audio Signals</p><br>
 				</div>
 			</div>
 
