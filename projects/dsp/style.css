@@ -5,6 +5,13 @@ body{
 p{
 	display: inline-block;
 }
+a{
+	text-decoration: none;
+	color: blue;
+}
+a :visited{
+	color: red;
+}
 #back{
 	text-align: center;
 	color: black;
